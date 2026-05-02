@@ -4,118 +4,142 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ИЗРАСКАЯНИЕ</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0icmdiKDI1LDIzLDI1KSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkeT0iLjM1ZW0iIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9InJnYigxOTQsMjE5LDE5NSkiIGZvbnQtZmFtaWx5PSInU2hhcmUgVGVjaCBNb25vJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjYwIiBmb250LXdlaWdodD0iYm9sZCI+0Jg8L3RleHQ+PHJlY3QgeD0iMTAiIHk9IjEwIiB3aWR0aD0iODAiIGhlaWdodD0iODAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiKDE5NCwyMTksMTk1KSIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+">
     <style>
         @import "https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap";
-        :root { --f-m: "Share Tech Mono", monospace; --g-p: 0 0 10px #78ad7a80; --g-e: 0 0 10px #c2555580; }
-        body { margin: 0; background: #191719; color: #c2dbc3; font-family: var(--f-m); min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; }
-        .vignette { position: fixed; inset: 0; pointer-events: none; z-index: 101; background: radial-gradient(circle at center, transparent 30%, rgba(0,0,0,0.5) 65%, rgba(0,0,0,0.9) 100%); }
-        .crt { pointer-events: none; position: fixed; inset: 0; background: repeating-linear-gradient(0deg, rgba(0,0,0,0.15) 0px, rgba(0,0,0,0.15) 1px, transparent 1px, transparent 2px); z-index: 100; }
-        .noise { position: fixed; inset: 0; pointer-events: none; z-index: 99; opacity: 0.05; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); animation: static 0.1s steps(2) infinite; }
-        .glitch { position: relative; display: inline-block; text-transform: uppercase; letter-spacing: .5em; text-shadow: var(--g-p); }
-        .glitch:before, .glitch:after { content: attr(data-text); position: absolute; inset: 0; }
-        .glitch:before { animation: g1 .3s infinite linear alternate-reverse; clip-path: polygon(0 0,100% 0,100% 35%,0 35%); color: #c25555; }
-        .glitch:after { animation: g2 .3s infinite linear alternate-reverse; clip-path: polygon(0 65%,100% 65%,100% 100%,0 100%); color: #66a3cc; }
-        .box { border: 1px solid #1d261e; background: #0d0d0d80; padding: 3rem 2rem; width: 450px; text-align: center; z-index: 10; position: relative; }
-        .box.banned { border-color: #c25555; box-shadow: 0 0 20px rgba(194, 85, 85, 0.2); }
-        input { width: 100%; background: transparent; border: 1px solid #1d261e; padding: 0.75rem; color: #c2dbc3; font-family: var(--f-m); outline: none; box-sizing: border-box; margin-top: 1.5rem; text-align: center; letter-spacing: 2px; }
+        :root { --c: #c2dbc3; --f: "Share Tech Mono", monospace; }
+        body { margin: 0; background: #191719; color: var(--c); font-family: var(--f); min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; }
+        .v { position: fixed; inset: 0; pointer-events: none; z-index: 101; background: radial-gradient(circle at center, transparent 30%, rgba(0,0,0,0.5) 65%, rgba(0,0,0,0.9) 100%); }
+        .crt { position: fixed; inset: 0; pointer-events: none; background: repeating-linear-gradient(0deg, rgba(0,0,0,0.15) 0px, rgba(0,0,0,0.15) 1px, transparent 1px, transparent 2px); z-index: 100; }
+        .n { position: fixed; inset: 0; pointer-events: none; z-index: 99; opacity: 0.04; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E"); animation: s 0.1s infinite; }
+        .g { position: relative; text-transform: uppercase; letter-spacing: .5em; text-shadow: 0 0 10px #78ad7a80; }
+        .g:before, .g:after { content: attr(data-text); position: absolute; inset: 0; }
+        .g:before { animation: g1 .3s infinite linear alternate-reverse; clip-path: polygon(0 0,100% 0,100% 35%,0 35%); color: #c25555; }
+        .g:after { animation: g2 .3s infinite linear alternate-reverse; clip-path: polygon(0 65%,100% 65%,100% 100%,0 100%); color: #66a3cc; }
+        
+        /* Исправлено: добавлена ширина и border-box */
+        .box { 
+            border: 1px solid #1d261e; 
+            background: rgba(13, 13, 13, 0.6); 
+            padding: 3rem 2rem; 
+            width: 450px; 
+            text-align: center; 
+            z-index: 10; 
+            position: relative; 
+            box-sizing: border-box; 
+        }
+        
+        .box.banned { border-color: #c25555; }
+        
+        /* Исправлено: box-sizing предотвращает "вылет" поля за границы */
+        input { 
+            width: 100%; 
+            background: transparent; 
+            border: 1px solid #1d261e; 
+            padding: 0.8rem; 
+            color: var(--c); 
+            font-family: var(--f); 
+            outline: none; 
+            margin-top: 1.5rem; 
+            text-align: center; 
+            letter-spacing: 2px; 
+            box-sizing: border-box; 
+        }
+
         #st { font-size: 0.75rem; color: #99b99a; min-height: 4em; text-transform: lowercase; line-height: 1.5; }
-        .err { color: #c25555 !important; text-shadow: var(--g-e); }
-        .ok { color: #78ad7a !important; text-shadow: var(--g-p); }
-        .timer-val { font-size: 1.2rem; display: block; margin-top: 10px; }
-        .decor-line { height: 1px; background: #c2dbc3; opacity: 0.2; margin: 5px 0; }
-        .header-decor, .footer-decor { width: 450px; position: relative; z-index: 10; }
-        @keyframes static { 0% { transform: translate(0,0) } 50% { transform: translate(-1%, 1%) } 100% { transform: translate(1%, -1%) } }
+        .err { color: #c25555 !important; } .ok { color: #78ad7a !important; }
+        .timer { font-size: 1.3rem; display: block; margin-top: 10px; color: #c25555; }
+        .dl { height: 1px; background: var(--c); opacity: 0.2; margin: 5px 0; }
+        .dec { width: 450px; z-index: 10; }
+        
+        @keyframes s { 0% { transform: translate(0,0) } 50% { transform: translate(-1%, 1%) } 100% { transform: translate(1%, -1%) } }
         @keyframes g1 { 0%, 100% { transform: translate(0) } 20% { transform: translate(-2px) } }
         @keyframes g2 { 0%, 100% { transform: translate(0) } 20% { transform: translate(2px) } }
     </style>
 </head>
 <body>
-    <div class="vignette"></div><div class="crt"></div><div class="noise"></div>
-    <div class="header-decor" style="margin-bottom: 2.5rem;">
-        <div class="decor-line" style="width: 75%;"></div>
-        <div class="decor-line" style="width: 50%; margin-left: 1.5rem;"></div>
+    <div class="v"></div><div class="crt"></div><div class="n"></div>
+    <div class="dec" style="margin-bottom: 2.5rem;">
+        <div class="dl" style="width: 75%;"></div>
+        <div class="dl" style="width: 50%; margin-left: 1.5rem;"></div>
     </div>
     <div style="text-align: center; margin-bottom: 2rem; z-index: 10;">
-        <div class="glitch" style="font-size: 0.75rem;" data-text="система">система</div>
-        <div class="glitch" style="font-size: 2.2rem; display: block; margin-top: 0.5rem;" data-text="ИЗРАСКАЯНИЕ">ИЗРАСКАЯНИЕ</div>
+        <div class="g" style="font-size: 0.75rem; opacity: 0.8;" data-text="система">система</div>
+        <div class="g" style="font-size: 2.2rem; display: block; margin-top: 0.5rem;" data-text="ИЗРАСКАЯНИЕ">ИЗРАСКАЯНИЕ</div>
     </div>
-    <div class="box" id="box">
+    <div class="box" id="bx">
         <div id="st">введите логин для выведения испытуемого из "израскаяния"</div>
-        <input type="text" id="id-input" placeholder="[идентификатор]" autocomplete="off">
+        <input type="text" id="ui" placeholder="[идентификатор]" autocomplete="off">
     </div>
-    <div class="footer-decor" style="margin-top: 2.5rem;">
-        <div class="decor-line" style="width: 66%; margin-left: auto;"></div>
-        <div class="decor-line" style="width: 85%; margin-right: 1.5rem; margin-left: auto;"></div>
-        <div style="font-size: 0.6rem; opacity: 0.4; text-align: center; margin-top: 1.5rem; letter-spacing: 0.3em;">
-            протокол v.3.0.5 // терминал активен
+    <div class="dec" style="margin-top: 2.5rem;">
+        <div class="dl" style="width: 66%; margin-left: auto;"></div>
+        <div class="dl" style="width: 85%; margin-right: 1.5rem; margin-left: auto;"></div>
+        <div style="font-size: 0.65rem; opacity: 0.4; text-align: center; margin-top: 1.5rem; letter-spacing: 0.3em;">
+            протокол v.3.1.0 // терминал активен
         </div>
     </div>
 
     <script>
         (function() {
-            const input = document.getElementById('id-input'), status = document.getElementById('st'), box = document.getElementById('box'), originalText = status.innerText;
-            const _enc = (s, k) => s.split('').map((c, i) => String.fromCharCode(c.charCodeAt(0) ^ k.charCodeAt(i % k.length))).join('');
-            
-            // Зашифрованные ключи
-            const K1 = "\x00\x03\x0b\x04\x12\x00\x01\x0b\x1d";
-            const K2 = "U]";
-            const UN = "\x12\x0d\x1d\x00\x1c";
-            const SALT = "X0d132d";
+            const ui = document.getElementById('ui'), st = document.getElementById('st'), bx = document.getElementById('bx'), orig = st.innerText;
+            const dec = (b) => decodeURIComponent(escape(atob(b)));
 
-            function formatTime(ms) {
+            const data = {
+                k: ["0LDQu9C10LrRgdCw0L3QtNGA", "MjM="],
+                r: "0YHQsdGA0L7RgQ==",
+                w: "YUhSMGNITTZMeU5rYVhOamIzSmtMbU52YlM5aGNHSXZkMlZpYUhSdmIyc3ZNVFF6TlRJM01UY3dNVFl3TkRBMU5URXlMek0wT0RNME16VTVNalV6TURRd05UUXhOekk1TXpNMU9DI01qUXhNekN4TURZek9UVTBORGd4TnpnMk1ERTBNVVUxT0RNek1EUTVPVGs9"
+            };
+
+            function fT(ms) {
                 const s = Math.max(0, Math.floor(ms / 1000)), h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), sec = s % 60;
                 return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
             }
 
-            let timerId = null;
-            function updateBanStatus() {
-                const banUntil = localStorage.getItem('ban_until');
-                if (banUntil) {
-                    const remaining = parseInt(banUntil) - Date.now();
-                    if (remaining > 0) {
-                        box.classList.add('banned');
-                        status.innerHTML = `ДОСТУП ЗАБЛОКИРОВАН<br><span class="timer-val">${formatTime(remaining)}</span>`;
-                        status.className = "err";
-                        if (!timerId) timerId = setInterval(updateBanStatus, 1000);
+            let t;
+            function check() {
+                const b = localStorage.getItem('ban');
+                if (b) {
+                    const r = parseInt(b) - Date.now();
+                    if (r > 0) {
+                        bx.classList.add('banned');
+                        st.innerHTML = `ДОСТУП ЗАБЛОКИРОВАН<br><span class="timer">${fT(r)}</span>`;
+                        st.className = "err";
+                        if (!t) t = setInterval(check, 1000);
                         return true;
                     } else {
-                        localStorage.removeItem('ban_until'); localStorage.setItem('attempts', '0');
-                        box.classList.remove('banned'); status.innerText = originalText; status.className = "";
-                        clearInterval(timerId); timerId = null;
+                        localStorage.removeItem('ban'); localStorage.setItem('at', '0');
+                        bx.classList.remove('banned'); st.innerText = orig; st.className = "";
+                        clearInterval(t); t = null;
                     }
                 }
                 return false;
             }
 
-            updateBanStatus();
+            check();
 
-            input.addEventListener('keypress', async (e) => {
+            ui.addEventListener('keypress', async (e) => {
                 if (e.key === 'Enter') {
-                    const raw = input.value.trim(), val = raw.toLowerCase(); input.value = ''; if (!val) return;
+                    const raw = ui.value.trim(), val = raw.toLowerCase(); ui.value = ''; if (!val) return;
+                    if (val === dec(data.r)) { localStorage.clear(); location.reload(); return; }
+                    if (check()) return;
 
-                    // Проверка сброса
-                    if (_enc(val, SALT) === UN) {
-                        localStorage.clear(); status.innerText = "СИСТЕМА ОБНУЛЕНА"; status.className = "ok";
-                        setTimeout(() => location.reload(), 1500); return;
-                    }
-
-                    if (updateBanStatus()) return;
-
-                    // Проверка логинов
-                    if (_enc(val, SALT) === K1 || _enc(val, SALT) === K2) {
-                        status.innerText = "ОБЪЕКТ НАЙДЕН. НАЧИНАЮ ВЫВОД..."; status.className = "ok";
-                        localStorage.setItem('attempts', '0');
-                        const whEnc = [26,116,11,21,1,10,50,45,4,21,11,10,13,5,10,41,1,10,61,61,91,30,16,10,9,13,10,14,31,90,5,24,1,14,11,1,3,10,18,91,10,13,53,52,54,49,51,52,55,54,53,49,52,49,53,53,51,101,52,4,44,14,24,3,1,10,31,23,5,13,10,4,62,54,48,110,6,10,1,10,23,3,11,11,5,19,45,91,24,13,1,28,1,1,1,51,21,1,25,9,30,24,14,13,10,4,61,16,1,23,10,4,9,30,24,14,13,10,4,6,61,56,45,1,1,10,5,4,2,30,10,14,1,5,4,1,30,3,1,10,14,22,6,1,1,10,5,4,5,53,10,16,110];
-                        let url = whEnc.map((b, i) => String.fromCharCode(b ^ SALT.charCodeAt(i % SALT.length))).join("");
-                        fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ embeds: [{ title: "ВЫВОД", description: `Объект \`${raw}\` авторизован.`, color: 7908730 }] }) }).catch(()=>{});
+                    if (data.k.map(dec).includes(val)) {
+                        st.innerText = "ОБЪЕКТ НАЙДЕН. НАЧИНАЮ ВЫВОД..."; st.className = "ok";
+                        localStorage.setItem('at', '0');
+                        try {
+                            const h = dec(dec(data.w));
+                            fetch(h, { 
+                                method: 'POST', 
+                                headers: { 'Content-Type': 'application/json' }, 
+                                body: JSON.stringify({ embeds: [{ title: "ВЫВОД ОБЪЕКТА", description: `Объект \`${raw}\` успешно авторизован.`, color: 7908730 }] }) 
+                            });
+                        } catch(e) {}
                     } else {
-                        let att = parseInt(localStorage.getItem('attempts') || '0') + 1;
-                        localStorage.setItem('attempts', att);
-                        if (att >= 5) {
-                            localStorage.setItem('ban_until', Date.now() + 10800000); updateBanStatus();
+                        let a = parseInt(localStorage.getItem('at') || '0') + 1;
+                        localStorage.setItem('at', a);
+                        if (a >= 5) {
+                            localStorage.setItem('ban', Date.now() + 10800000); check();
                         } else {
-                            status.innerText = `ОШИБКА: ОБЪЕКТ НЕ НАЙДЕН. ОСТАЛОСЬ: ${5 - att}`; status.className = "err";
+                            st.innerText = `ОШИБКА: ОБЪЕКТ НЕ НАЙДЕН. ОСТАЛОСЬ: ${5 - a}`; st.className = "err";
                         }
                     }
                 }
