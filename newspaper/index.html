@@ -11,41 +11,24 @@
             font-family: 'Arial Black', Gadget, sans-serif;
             margin: 0;
             padding: 0;
-            overflow-x: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
         .main-container {
-            position: relative;
-            width: 100%;
-            max-width: 1200px;
-            height: 90vh;
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
             align-items: center;
+            flex: 1;
+            width: 100%;
+            max-width: 1400px;
+            gap: 20px;
             padding: 20px;
         }
 
-        /* Текст по центру */
-        .central-text {
-            text-align: center;
-            z-index: 10;
-            flex: 1;
-        }
-
-        .central-text h1 {
-            font-size: 5rem;
-            line-height: 1.1;
-            margin: 0;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.2);
-        }
-
-        /* Стили для картинок */
         .image-side {
             flex: 1;
             display: flex;
@@ -53,65 +36,91 @@
             align-items: center;
         }
 
+        /* Настройки для картинки РОЗЫСК */
         .wanted-img {
-            max-width: 350px;
-            transform: rotate(-5deg); /* Небольшой наклон для стиля */
-            box-shadow: 0 0 30px rgba(0,0,0,0.5);
-            transition: 0.3s;
+            max-width: 380px;
+            width: 100%;
+            transform: rotate(-3deg);
+            filter: drop-shadow(0 0 30px rgba(255,255,255,0.1));
+            transition: 0.5s;
         }
 
+        /* Настройки для картинки МАРИОНЕТКА */
         .marionette-img {
             max-width: 450px;
-            filter: brightness(0.8);
+            width: 100%;
+            filter: brightness(0.8) contrast(1.1);
             transition: 0.5s;
         }
 
         .wanted-img:hover, .marionette-img:hover {
-            filter: brightness(1.1);
-            transform: scale(1.05) rotate(0deg);
+            filter: brightness(1) contrast(1.2);
+            transform: scale(1.02) rotate(0deg);
         }
 
-        /* Кнопка назад */
+        .central-text {
+            text-align: center;
+            min-width: 350px;
+            z-index: 10;
+        }
+
+        .central-text h1 {
+            font-size: clamp(2rem, 6vw, 4.5rem);
+            line-height: 1.1;
+            margin: 0;
+            text-transform: uppercase;
+            text-shadow: 0 0 15px rgba(255,255,255,0.2);
+        }
+
         .back-nav {
             position: absolute;
             top: 20px;
             left: 20px;
+            z-index: 100;
         }
 
         .back-link {
-            color: #555;
+            color: #444;
             text-decoration: none;
-            font-size: 0.9rem;
-            border: 1px solid #333;
-            padding: 5px 15px;
+            border: 1px solid #222;
+            padding: 8px 16px;
+            font-size: 0.8rem;
             transition: 0.3s;
         }
 
         .back-link:hover {
             color: #fff;
             border-color: #fff;
+            box-shadow: 0 0 10px rgba(255,255,255,0.5);
         }
 
-        /* Адаптивность для телефонов */
-        @media (max-width: 768px) {
+        footer {
+            padding: 20px;
+            color: #111;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+        }
+
+        /* Адаптация для мобилок */
+        @media (max-width: 1000px) {
             .main-container {
                 flex-direction: column;
-                height: auto;
+                padding-top: 80px;
             }
-            .central-text h1 {
-                font-size: 2.5rem;
-                margin: 20px 0;
+            .central-text {
+                order: 1;
+                min-width: auto;
+                margin-bottom: 30px;
             }
-            .wanted-img, .marionette-img {
-                max-width: 80%;
-            }
+            .image-side:nth-child(1) { order: 2; }
+            .image-side:nth-child(3) { order: 3; }
         }
     </style>
 </head>
 <body>
 
     <nav class="back-nav">
-        <a href="../" class="back-link">← Вернуться в систему</a>
+        <a href="../" class="back-link">← ВЕРНУТЬСЯ В СИСТЕМУ</a>
     </nav>
 
     <div class="main-container">
@@ -121,17 +130,15 @@
 
         <div class="central-text">
             <h1>ОН ВАМ<br>НЕ<br>ЧЕЛОВЕК,</h1>
-            <h1 style="margin-top: 40px;">ОН ИЛЛЮЗИЯ</h1>
+            <h1 style="margin-top: 40px; color: #fff;">ОН ИЛЛЮЗИЯ</h1>
         </div>
 
         <div class="image-side">
-            <img src="marrionete.png" alt="Марионетка" class="marionette-img">
+            <img src="marionette.png" alt="Марионетка" class="marionette-img">
         </div>
     </div>
 
-    <footer style="padding: 20px; color: #222;">
-        [ СТРАНИЦА ГАЗЕТЫ // REPENTANCE PROGRAMM ]
-    </footer>
+    <footer>[ СТРАНИЦА ГАЗЕТЫ // REPENTANCE PROGRAMM // 2026 ]</footer>
 
 </body>
 </html>
