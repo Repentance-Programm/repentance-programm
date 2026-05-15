@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repentance Newspaper - Illusion</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Arial Black', Gadget, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .main-container {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            height: 90vh;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Текст по центру */
+        .central-text {
+            text-align: center;
+            z-index: 10;
+            flex: 1;
+        }
+
+        .central-text h1 {
+            font-size: 5rem;
+            line-height: 1.1;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Стили для картинок */
+        .image-side {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .wanted-img {
+            max-width: 350px;
+            transform: rotate(-5deg); /* Небольшой наклон для стиля */
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            transition: 0.3s;
+        }
+
+        .marionette-img {
+            max-width: 450px;
+            filter: brightness(0.8);
+            transition: 0.5s;
+        }
+
+        .wanted-img:hover, .marionette-img:hover {
+            filter: brightness(1.1);
+            transform: scale(1.05) rotate(0deg);
+        }
+
+        /* Кнопка назад */
+        .back-nav {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+
+        .back-link {
+            color: #555;
+            text-decoration: none;
+            font-size: 0.9rem;
+            border: 1px solid #333;
+            padding: 5px 15px;
+            transition: 0.3s;
+        }
+
+        .back-link:hover {
+            color: #fff;
+            border-color: #fff;
+        }
+
+        /* Адаптивность для телефонов */
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+                height: auto;
+            }
+            .central-text h1 {
+                font-size: 2.5rem;
+                margin: 20px 0;
+            }
+            .wanted-img, .marionette-img {
+                max-width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="back-nav">
+        <a href="../" class="back-link">← Вернуться в систему</a>
+    </nav>
+
+    <div class="main-container">
+        <div class="image-side">
+            <img src="wanted.jpg" alt="Розыск" class="wanted-img">
+        </div>
+
+        <div class="central-text">
+            <h1>ОН ВАМ<br>НЕ<br>ЧЕЛОВЕК,</h1>
+            <h1 style="margin-top: 40px;">ОН ИЛЛЮЗИЯ</h1>
+        </div>
+
+        <div class="image-side">
+            <img src="marionette.png" alt="Марионетка" class="marionette-img">
+        </div>
+    </div>
+
+    <footer style="padding: 20px; color: #222;">
+        [ СТРАНИЦА ГАЗЕТЫ // REPENTANCE PROGRAMM ]
+    </footer>
+
+</body>
+</html>
