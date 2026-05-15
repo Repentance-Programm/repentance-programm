@@ -16,7 +16,6 @@
         .g:before { animation: g1 .3s infinite linear alternate-reverse; clip-path: polygon(0 0,100% 0,100% 35%,0 35%); color: #c25555; }
         .g:after { animation: g2 .3s infinite linear alternate-reverse; clip-path: polygon(0 65%,100% 65%,100% 100%,0 100%); color: #66a3cc; }
         
-        /* Исправлено: добавлена ширина и border-box */
         .box { 
             border: 1px solid #1d261e; 
             background: rgba(13, 13, 13, 0.6); 
@@ -30,7 +29,6 @@
         
         .box.banned { border-color: #c25555; }
         
-        /* Исправлено: box-sizing предотвращает "вылет" поля за границы */
         input { 
             width: 100%; 
             background: transparent; 
@@ -84,9 +82,9 @@
             const dec = (b) => decodeURIComponent(escape(atob(b)));
 
             const data = {
-                k: ["0LDQu9C10LrRgdCw0L3QtNGA", "MjM="],
+                k: ["0LDQu9C10LrRgQ==", "MjM="], 
                 r: "0YHQsdGA0L7RgQ==",
-                w: "YUhSMGNITTZMeU5rYVhOamIzSmtMbU52YlM5aGNHSXZkMlZpYUhSdmIyc3ZNVFF6TlRJM01UY3dNVFl3TkRBMU5URXlMek0wT0RNME16VTVNalV6TURRd05UUXhOekk1TXpNMU9DI01qUXhNekN4TURZek9UVTBORGd4TnpnMk1ERTBNVVUxT0RNek1EUTVPVGs9"
+                w: "YUhSMGNITTZMeTlrYVhOamIzSmtMbU52YlM5aGNHa3ZkMlZpYUc5dmEzTXZNVFE1TnpZME1EUTBPREV4TWpRMk5EQTJNaTlqVDE5YVZGRTNYekUyTUhaRmMzQlFRbnBoYzJvd1RVSmZRVjlQTFVwU1dIZzVMVmt3Wkc1blpYTkxkVms1V0RSMFZHbDFjMUZpY1d0SGJEWjBkemg2WjE5V2JnPT0="
             };
 
             function fT(ms) {
