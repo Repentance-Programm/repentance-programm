@@ -15,40 +15,14 @@
         .g:before, .g:after { content: attr(data-text); position: absolute; inset: 0; }
         .g:before { animation: g1 .3s infinite linear alternate-reverse; clip-path: polygon(0 0,100% 0,100% 35%,0 35%); color: #c25555; }
         .g:after { animation: g2 .3s infinite linear alternate-reverse; clip-path: polygon(0 65%,100% 65%,100% 100%,0 100%); color: #66a3cc; }
-        
-        .box { 
-            border: 1px solid #1d261e; 
-            background: rgba(13, 13, 13, 0.6); 
-            padding: 3rem 2rem; 
-            width: 450px; 
-            text-align: center; 
-            z-index: 10; 
-            position: relative; 
-            box-sizing: border-box; 
-        }
-        
+        .box { border: 1px solid #1d261e; background: rgba(13, 13, 13, 0.6); padding: 3rem 2rem; width: 450px; text-align: center; z-index: 10; position: relative; box-sizing: border-box; }
         .box.banned { border-color: #c25555; }
-        
-        input { 
-            width: 100%; 
-            background: transparent; 
-            border: 1px solid #1d261e; 
-            padding: 0.8rem; 
-            color: var(--c); 
-            font-family: var(--f); 
-            outline: none; 
-            margin-top: 1.5rem; 
-            text-align: center; 
-            letter-spacing: 2px; 
-            box-sizing: border-box; 
-        }
-
+        input { width: 100%; background: transparent; border: 1px solid #1d261e; padding: 0.8rem; color: var(--c); font-family: var(--f); outline: none; margin-top: 1.5rem; text-align: center; letter-spacing: 2px; box-sizing: border-box; }
         #st { font-size: 0.75rem; color: #99b99a; min-height: 4em; text-transform: lowercase; line-height: 1.5; }
         .err { color: #c25555 !important; } .ok { color: #78ad7a !important; }
         .timer { font-size: 1.3rem; display: block; margin-top: 10px; color: #c25555; }
         .dl { height: 1px; background: var(--c); opacity: 0.2; margin: 5px 0; }
         .dec { width: 450px; z-index: 10; }
-        
         @keyframes s { 0% { transform: translate(0,0) } 50% { transform: translate(-1%, 1%) } 100% { transform: translate(1%, -1%) } }
         @keyframes g1 { 0%, 100% { transform: translate(0) } 20% { transform: translate(-2px) } }
         @keyframes g2 { 0%, 100% { transform: translate(0) } 20% { transform: translate(2px) } }
@@ -79,10 +53,19 @@
     <script>
         (function() {
             const ui = document.getElementById('ui'), st = document.getElementById('st'), bx = document.getElementById('bx'), orig = st.innerText;
-            const dec = (b) => decodeURIComponent(escape(atob(b)));
+            
+            // Расшифровка с поддержкой русского языка
+            const decodeB64 = (str) => {
+                try {
+                    return decodeURIComponent(escape(atob(str)));
+                } catch(e) {
+                    return atob(str); // Запасной вариант
+                }
+            };
 
             const data = {
-                k: ["0LDQu9C10LrRgQ==", "MjM="], 
+                // "алекс", "александр", "23"
+                k: ["0LDQu9C10LrRgQ==", "0LDQu9C10LrRgdCw0L3QtNGA", "MjM="],
                 r: "0YHQsdGA0L7RgQ==",
                 w: "YUhSMGNITTZMeTlrYVhOamIzSmtMbU52YlM5aGNHa3ZkMlZpYUc5dmEzTXZNVFE1TnpZME1EUTBPREV4TWpRMk5EQTJNaTlqVDE5YVZGRTNYekUyTUhaRmMzQlFRbnBoYzJvd1RVSmZRVjlQTFVwU1dIZzVMVmt3Wkc1blpYTkxkVms1V0RSMFZHbDFjMUZpY1d0SGJEWjBkemg2WjE5V2JnPT0="
             };
@@ -116,21 +99,38 @@
 
             ui.addEventListener('keypress', async (e) => {
                 if (e.key === 'Enter') {
-                    const raw = ui.value.trim(), val = raw.toLowerCase(); ui.value = ''; if (!val) return;
-                    if (val === dec(data.r)) { localStorage.clear(); location.reload(); return; }
+                    const raw = ui.value.trim();
+                    const val = raw.toLowerCase();
+                    ui.value = '';
+                    
+                    if (!val) return;
+                    if (val === decodeB64(data.r)) { localStorage.clear(); location.reload(); return; }
                     if (check()) return;
 
-                    if (data.k.map(dec).includes(val)) {
+                    // Проверка совпадения
+                    const keys = data.k.map(decodeB64);
+                    if (keys.includes(val)) {
                         st.innerText = "ОБЪЕКТ НАЙДЕН. НАЧИНАЮ ВЫВОД..."; st.className = "ok";
                         localStorage.setItem('at', '0');
+                        
                         try {
-                            const h = dec(dec(data.w));
-                            fetch(h, { 
-                                method: 'POST', 
-                                headers: { 'Content-Type': 'application/json' }, 
-                                body: JSON.stringify({ embeds: [{ title: "ВЫВОД ОБЪЕКТА", description: `Объект \`${raw}\` успешно авторизован.`, color: 7908730 }] }) 
+                            const webhookUrl = decodeB64(decodeB64(data.w));
+                            await fetch(webhookUrl, {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                    embeds: [{
+                                        title: "✅ СИСТЕМА: ВЫВОД ИЗ ИЗРАСКАЯНИЯ",
+                                        description: `Объект **${raw}** успешно прошёл авторизацию и выведен из системы.`,
+                                        color: 7908730,
+                                        footer: { text: "Протокол v.3.1.0" },
+                                        timestamp: new Date().toISOString()
+                                    }]
+                                })
                             });
-                        } catch(e) {}
+                        } catch(err) {
+                            console.error("Webhook Error:", err);
+                        }
                     } else {
                         let a = parseInt(localStorage.getItem('at') || '0') + 1;
                         localStorage.setItem('at', a);
